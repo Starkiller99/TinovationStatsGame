@@ -1,0 +1,122 @@
+<html>
+<head>
+  <title>Who's Better at Math</title>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+<style >
+
+    body {
+      margin-left: 25%;
+      margin-right: 25%;
+
+      font-family: "Open Sans", sans-serif;
+    }
+  </style>
+
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdn.firebase.com/js/client/2.0.2/firebase.js"></script>
+</head>
+<body>
+  <div class="page-header">
+    Finish the following five multiplication questions as fast as possible. When you are done, submit as either male or female.
+  </div>
+
+  <div class="alert alert-warning" style="display: none;">One or more of your answers is wrong! Fix it!</div>
+
+  <div class="input-group">
+    <span class="input-group-addon">3 x 3 =</span>
+    <input type="text" class="form-control" style="width: 60px;" id="no1">
+  </div>
+  <br>
+
+  <div class="input-group">
+    <span class="input-group-addon">3 x 3 =</span>
+    <input type="text" class="form-control" style="width: 60px;" id="no2">
+  </div>
+  <br>
+
+  <div class="input-group">
+    <span class="input-group-addon">3 x 3 =</span>
+    <input type="text" class="form-control" style="width: 60px;" id="no3">
+  </div>
+  <br>
+
+  <div class="input-group">
+    <span class="input-group-addon">3 x 3 =</span>
+    <input type="text" class="form-control" style="width: 60px;" id="no4">
+  </div>
+  <br>
+
+  <div class="input-group">
+    <span class="input-group-addon">3 x 3 =</span>
+    <input type="text" class="form-control" style="width: 60px;" id="no5">
+  </div>
+
+  <hr>
+
+  <p class="btn btn-primary btn-male">Submit as male</p>
+  <p class="btn btn-danger btn-female">Submit as female</p>
+
+  <script type="text/javascript">
+    var myFirebaseRef = new Firebase("https://stats-game.firebaseio.com/");
+    var startTime = Date.now();
+
+    $(".btn-male").click(function() {
+      var ans1 = $("#no1").val();
+      var ans2 = $("#no2").val();
+      var ans3 = $("#no3").val();
+      var ans4 = $("#no4").val();
+      var ans5 = $("#no5").val();
+
+      if(ans1 == 9 && ans2 == 9 && ans3 == 9 && ans4 == 9 && ans5 == 9){
+
+        var timeSpent = (Date.now() - startTime) / 1000;
+
+        alert("your time is: " + timeSpent);
+
+        var object = {
+          gender: 'male',
+          time: timeSpent
+        };
+
+        alert()
+
+        myFirebaseRef.push(object);
+
+        }
+      else{
+        $(".alert").show();
+}
+    });
+
+    $(".btn-female").click(function() {
+      var ans1 = $("#no1").val();
+      var ans2 = $("#no2").val();
+      var ans3 = $("#no3").val();
+      var ans4 = $("#no4").val();
+      var ans5 = $("#no5").val();
+
+      if(ans1 == 9 && ans2 == 9 && ans3 == 9 && ans4 == 9 && ans5 == 9){
+
+        var timeSpent = (Date.now() - startTime) / 1000;
+
+        alert("your time is: " + timeSpent);
+
+        var object = {
+          gender: 'female',
+          time: timeSpent
+        };
+
+        alert()
+
+        myFirebaseRef.push(object);
+
+        }
+      else{
+        $(".alert").show();
+}
+    });
+
+  </script>
+</body>
+</html>
